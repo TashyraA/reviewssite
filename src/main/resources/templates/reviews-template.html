@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Horror Film Reviews</title>
+</head>
+<body>
+
+<header>
+    <h1>My Movie reviews</h1>
+</header>
+
+<main>
+    <ul>
+        <li th:each="review: ${reviewsModel}"><a th:href="|/show-reviews/${review.Id}|" th:text="${review.title}"></a>
+        </li>
+
+    </ul>
+</main>
+<footer>
+    <small>&copy WCCI 2020</small>
+</footer>
+</body>
+</html>
