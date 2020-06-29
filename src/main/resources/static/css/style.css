@@ -1,0 +1,100 @@
+* {
+    font-family: sans-serif;
+}
+
+h1 {
+    margin: 0;
+    color: dimgrey;
+    background: lightcoral;
+    padding: 0.5em 0em;
+}
+
+h2 {
+    margin-left: 7em;
+}
+
+p {
+    /*text-align: center;*/
+    margin-left: 10em;
+    margin-right: 40em;
+}
+
+.cinema {
+    margin-left: 10em;
+}
+
+.back {
+    margin-left: 0em;
+    /*text-decoration: none;*/
+}
+
+a {
+    justify-content: center;
+}
+
+main > img {
+    padding-top: 0.5em;
+    padding-left: 10em;
+}
+
+header > h1 {
+    text-align: center;
+}
+
+footer {
+    background: lightgray;
+    color: grey;
+    text-align: center;
+    padding: 0.5em 0em;
+}
+
+.rating {
+    position: absolute;
+    display: flex;
+    transform: rotateY(180deg);
+    margin-left: 20em;
+    margin-bottom: 5em;
+}
+
+.rating input {
+    display: none;
+
+}
+
+.rating label {
+    display: block;
+    cursor: pointer;
+    width: 50px;
+}
+
+.rating label:before {
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 50px;
+    color: #101010;
+}
+
+.rating label:after {
+    content:'\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 50px;
+    color: gold;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 5);
+}
+
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after{
+    opacity: 1;
+}
+
+ul {
+    list-style-type: none;
+}

@@ -1,46 +1,30 @@
 package org.wecancodeit.reviewssite;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Collection;
-import javax.annotation.Resource;
-
 import org.junit.jupiter.api.Test;
-import org.wecancodeit.reviewssite.Review;
-import org.wecancodeit.reviewssite.ReviewRepository;
 
-import javax.annotation.Resource;
 import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReviewsRepositoryTest {
 
-    @Resource
     private ReviewRepository underTest;
-    private Review reviewOne = new Review(1L, "Review 1 title", "description", "imageURL", 1978);
-    private Review reviewTwo = new Review(2L, "Review 2 title", "description", "imageUrl", 2015);
-
-
+    private Review reviewOne = new Review(1l, "House of 1000 Corpses", "url", "category", "content");
+    private Review reviewTwo = new Review(2l, "The Devil's Rejects", "url", "category", "content");
 
     @Test
-    public void shouldReturnReviewOneById() {
+    public void t1ShouldFindReviewOne() {
         underTest = new ReviewRepository(reviewOne);
-        Review foundReview = (Review) underTest.findOneReview(1L);
-        assertEquals(foundReview, reviewOne);
+        Review foundReview = underTest.findOne(1l);
+        assertEquals(reviewOne, foundReview);
     }
 
     @Test
-    public void shouldReturnReviewTwoById() {
-        underTest = new ReviewRepository(reviewTwo);
-        Review foundReview = (Review) underTest.findOneReview(2L);
-        assertEquals(foundReview, reviewTwo);
+    public void t2shouldFindReviewOneAndReviewTwo() {
+        underTest = new ReviewRepository(reviewOne);
+        Collection<Review> foundReviews = underTest.findAll();
+        assertThat(foundReviews).contains(reviewOne, reviewTwo);
     }
 
-
-    @Test
-    public void shouldFindAllReviews() {
-        underTest = new ReviewRepository(reviewOne, reviewTwo);
-        Collection<Review> foundReviews = (Collection<Review>) underTest.findAllReviews();
-        assertTrue(foundReviews.contains(reviewOne));
-        assertTrue(foundReviews.contains(reviewTwo));
-    }
 }

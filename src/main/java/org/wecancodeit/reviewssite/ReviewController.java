@@ -1,39 +1,32 @@
 package org.wecancodeit.reviewssite;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.wecancodeit.reviewssite.ReviewNotFoundException;
-import org.wecancodeit.reviewssite.ReviewRepository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 
-@RequestMapping("/show-reviews")
 @Controller
 public class ReviewController {
 
     @Resource
     private ReviewRepository reviewRepo;
 
-    @GetMapping("")
+    @RequestMapping("/reviews")
     public String findAllReviews(Model model) {
-
-        model.addAttribute("reviewsModel", reviewRepo.findAllReviews());
-        return "reviews-template";
+        model.addAttribute("reviewsModel", reviewRepo.findAll());
+        return "reviewsTemplate";
 
     }
 
-    @GetMapping("/{Id}")
-    public String findOneReview(@PathVariable(value = "Id") Long Id, Model model) throws ReviewNotFoundException {
-
-        if (reviewRepo.findOneReview(Id) == null) {
+    @RequestMapping("/review")
+    public String findOneReview(@RequestParam(value = "id") Long id, Model model) throws  ReviewNotFoundException {
+        if (reviewRepo.findOne(id) == null) {
             throw new ReviewNotFoundException();
         }
 
-        model.addAttribute("reviewModel", reviewRepo.findOneReview(Id));
-        return "review-template";
+        model.addAttribute("reviewModel", reviewRepo.findOne(id));
+        return "reviewTemplate";
     }
 }

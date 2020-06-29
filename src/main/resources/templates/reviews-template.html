@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
+
 <head>
-    <title>My Horror Film Reviews</title>
+    <link href="../static/css/style.css" rel="stylesheet">
+    <title>A List of All Reviews</title>
 </head>
 <body>
 
 <header>
-    <h1>My Movie reviews</h1>
+    <h1>Movie Reviews</h1>
 </header>
 
 <main>
     <ul>
-        <li th:each="review: ${reviewsModel}"><a th:href="|/show-reviews/${review.Id}|" th:text="${review.title}"></a>
+        <li th:each="review: ${reviewModel}">
+            <a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a>
         </li>
-
     </ul>
 </main>
+
+<img class="cinema" src="../static/images/movie.png" height="512" width="428"/>
+<img src="static\images\movie.png" width="1480"/>
+
+
 <footer>
-    <small>&copy WCCI 2020</small>
+    <small>&copy Tashyra Adams 2020</small>
 </footer>
 </body>
 </html>
